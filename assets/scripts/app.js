@@ -6,38 +6,25 @@ function createOutput(operator, resultBefore, resultAfter){
 
 }
 
-function add(){
-    const enteredNumber = parseInt(userInput.value);
+function calculate(operation){
+    const enteredNumber = parseInt(userInput.value) ? parseInt(userInput.value) : 0;
     const initialResult = currentResult;
-    currentResult += enteredNumber;
-    createOutput('+', initialResult, enteredNumber);
-}
-
-function subtract(){
-    const enteredNumber = parseInt(userInput.value);
-    const initialResult = currentResult;
-    currentResult -= enteredNumber;
-    createOutput('-', initialResult, enteredNumber);
-}
-
-function multiply(){
-    const enteredNumber = parseInt(userInput.value);
-    const initialResult = currentResult;
-    currentResult *= enteredNumber;
-    createOutput('*', initialResult, enteredNumber);
-}
-
-function divide(){
-    const enteredNumber = parseInt(userInput.value);
-    const initialResult = currentResult;
-    currentResult /= enteredNumber;
-    createOutput('/', initialResult, enteredNumber);
+    if (operation === "+"){
+        currentResult += enteredNumber;
+    } else if (operation === "-") {
+        currentResult -= enteredNumber;
+    } else if (operation === "*") {
+        currentResult *= enteredNumber;
+    } else {
+        currentResult /= enteredNumber;
+    }
+    createOutput(operation, initialResult, enteredNumber);
 }
 
 
- addBtn.addEventListener('click', add);
- subtractBtn.addEventListener('click', subtract);
- multiplyBtn.addEventListener('click', multiply);
- divideBtn.addEventListener('click', divide);
+ addBtn.addEventListener('click', calculate.bind(this, "+"));
+ subtractBtn.addEventListener('click', calculate.bind(this, "-"));
+ multiplyBtn.addEventListener('click', calculate.bind(this, "*"));
+ divideBtn.addEventListener('click', calculate.bind(this, "/"));
 
 
